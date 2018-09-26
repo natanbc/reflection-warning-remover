@@ -1,0 +1,4 @@
+Agent-Class: com.github.natanbc.warningremover.AgentMain
+Premain-Class: com.github.natanbc.warningremover.AgentMain
+Can-Retransform-Classes: true
+Can-Redefine-Classes: true
