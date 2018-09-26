@@ -16,3 +16,17 @@ gets rid of java 9+ warnings about illegal reflective accesses by rewriting all 
 ```
 java -javaagent:path/to/the/jar your-other-options-go-here
 ```
+
+## Arguments
+
+Arguments are provided in a comma separated list after the javaagent argument:
+
+```
+java -javaagent:path/to/agent=ARGS
+```
+
+The following arguments are supported:
+
+- `retransform-loaded`: retransforms all currently loaded classes after starting the agent. Without this option, only
+classes loaded after the agent starts will be transformed. This option usually won't matter unless you load other
+agents before this one, so the recommended is to leave it off for faster startup.

@@ -20,9 +20,10 @@ import static org.objectweb.asm.Opcodes.*;
 public class Transformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
+        if(protectionDomain.getClassLoader() == null) return null;
         ClassReader reader = new ClassReader(classfileBuffer);
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
-        reader.accept(new Visitor(ASM6, writer), ClassReader.EXPAND_FRAMES);
+        reader.accept(new Visitor(ASM6, writer), 0);
         return writer.toByteArray();
     }
 
